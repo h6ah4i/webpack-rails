@@ -19,7 +19,7 @@ module Webpack
       class << self
         # :nodoc:
         def asset_paths(source)
-          paths = manifest["assetsByChunkName"][source]
+          paths = manifest[source]
           if paths
             # Can be either a string or an array of strings.
             # Do not include source maps as they are not javascript

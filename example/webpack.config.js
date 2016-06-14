@@ -3,7 +3,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
-var StatsPlugin = require('stats-webpack-plugin');
+var ManifestPlugin = require('webpack-manifest-plugin');
 
 // must match config.webpack.dev_server.port
 var devServerPort = 3808;
@@ -34,14 +34,8 @@ var config = {
 
   plugins: [
     // must match config.webpack.manifest_filename
-    new StatsPlugin('manifest.json', {
-      // We only need assetsByChunkName
-      chunkModules: false,
-      source: false,
-      chunks: false,
-      modules: false,
-      assets: true
-    })]
+    new ManifestPlugin({ fileName: 'manifest.json' })
+  ]
 };
 
 if (production) {

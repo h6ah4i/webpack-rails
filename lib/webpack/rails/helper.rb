@@ -15,7 +15,10 @@ module Webpack
       def webpack_asset_paths(source, extension: nil)
         return "" unless source.present?
 
-        paths = Webpack::Rails::Manifest.asset_paths(source)
+        source_with_ext = source
+        source_with_ext += ".#{extension}" if extension
+
+        paths = Webpack::Rails::Manifest.asset_paths(source_with_ext)
         paths = paths.select {|p| p.ends_with? ".#{extension}" } if extension
 
         host = ::Rails.configuration.webpack.dev_server.host
